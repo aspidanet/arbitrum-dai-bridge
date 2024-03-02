@@ -11,6 +11,28 @@ import { HardhatUserConfig } from 'hardhat/config'
 const testDir = process.env.TESTS_DIR ?? 'test'
 
 const config: HardhatUserConfig = {
+  networks: {
+    ethereum: {
+      url: 'http://localhost:24012/rpc', // truffle-dashboard
+      timeout: 200000,
+    },
+    arbitrum: {
+      url: 'http://localhost:24012/rpc', // truffle-dashboard
+      timeout: 200000,
+    },
+    sepolia: {
+      url: 'http://localhost:24012/rpc', // truffle-dashboard
+      timeout: 2000000,
+    },
+    arbitrumSepolia: {
+      url: 'http://localhost:24012/rpc', // truffle-dashboard
+      timeout: 2000000,
+    },
+    localhost: {
+      url: 'http://localhost:24012/rpc', // truffle-dashboard
+      timeout: 200000,
+    },
+  },
   mocha: {
     timeout: 50000,
   },
