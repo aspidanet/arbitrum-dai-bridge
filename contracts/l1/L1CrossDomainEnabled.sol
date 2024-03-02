@@ -20,11 +20,11 @@ import "../arbitrum/IInbox.sol";
 import "../arbitrum/IOutbox.sol";
 
 abstract contract L1CrossDomainEnabled {
-  IInbox public immutable inbox;
+  IInbox public inbox;
 
   event TxToL2(address indexed from, address indexed to, uint256 indexed seqNum, bytes data);
 
-  constructor(address _inbox) public {
+  function __CrossDomainEnabled_init(address _inbox) internal {
     inbox = IInbox(_inbox);
   }
 

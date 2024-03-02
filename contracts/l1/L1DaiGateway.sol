@@ -65,7 +65,7 @@ contract L1DaiGateway is L1CrossDomainEnabled, L1ITokenGateway {
     address _l1Dai,
     address _l2Dai,
     address _l1Escrow
-  ) public L1CrossDomainEnabled(_inbox) {
+  ) public {
     wards[msg.sender] = 1;
     emit Rely(msg.sender);
 
@@ -74,6 +74,8 @@ contract L1DaiGateway is L1CrossDomainEnabled, L1ITokenGateway {
     l1Escrow = _l1Escrow;
     l1Router = _l1Router;
     l2Counterpart = _l2Counterpart;
+
+    __CrossDomainEnabled_init(_inbox);
   }
 
   function close() external auth {
