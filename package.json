@@ -55,17 +55,20 @@
     "mocha": "^8.1.1",
     "prettier": "^2.2.1",
     "prettier-plugin-solidity": "^1.0.0-beta.17",
+    "solidity-coverage": "^0.7.17",
     "ts-essentials": "^7.0.1",
     "ts-node": "^9.0.0",
     "typechain": "^5.0.0",
     "typescript": "^4.0.2",
-    "utf8": "^3.0.0",
-    "solidity-coverage": "^0.7.17"
+    "utf8": "^3.0.0"
   },
   "resolutions": {
     "ethers": "5.4.0",
     "@ethersproject/providers": "5.4.0",
     "@ethersproject/contracts": "5.4.0",
     "@ethersproject/abi": "5.4.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.4.2"
   }
 }
