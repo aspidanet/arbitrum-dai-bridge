@@ -15,3 +15,5 @@ corpus/
 .last_confs/
 coverage.json
 coverage
+
+local
