@@ -22,7 +22,6 @@ async function main() {
             "L2AspidaERC20Gateway",
             deploymentsAll[`${tokenName}L2AspidaERC20Gateway`].address,
         );
-        const l2GovernanceRelay = deploymentsAll[`${tokenName}L2GovernanceRelay`].address;
 
         if ((await L2AspidaERC20Gateway.wards(owner)).toString() == "0") {
             console.log(`${tokenName} L2AspidaERC20Gateway rely auth: ${owner}\n`);
@@ -30,16 +29,6 @@ async function main() {
                 L2AspidaERC20Gateway,
                 "rely",
                 [owner],
-                (await L2AspidaERC20Gateway.wards(deployer)).toString() == "1",
-            );
-        }
-
-        if ((await L2AspidaERC20Gateway.wards(l2GovernanceRelay)).toString() == "0") {
-            console.log(`${tokenName} L2AspidaERC20Gateway rely auth: ${l2GovernanceRelay}\n`);
-            await sendTransaction(
-                L2AspidaERC20Gateway,
-                "rely",
-                [l2GovernanceRelay],
                 (await L2AspidaERC20Gateway.wards(deployer)).toString() == "1",
             );
         }

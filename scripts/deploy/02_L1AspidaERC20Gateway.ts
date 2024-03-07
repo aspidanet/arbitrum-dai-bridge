@@ -1,5 +1,4 @@
 import { deployments, companionNetworks, getNamedAccounts, getChainId, ethers } from "hardhat";
-// import { providers, Signer, Wallet } from 'ethers'
 import { deployProxy } from "../utils/utils";
 import { network, deployInfo } from "../config/config";
 
@@ -19,6 +18,7 @@ module.exports = async ({ deployments, getChainId }) => {
     const l2deployData = deployInfo[deployData.layer2.network];
 
     let l2DeployerNonce = await l2provider.getTransactionCount(deployData.layer2.deployer);
+    console.log(l2DeployerNonce);
     // let l2DeployerNonce = 3;
 
     let l2AspidaERC20GatewayImpl;
@@ -49,14 +49,22 @@ module.exports = async ({ deployments, getChainId }) => {
         ];
         console.log(`constructor args :`);
         console.log(constructorArgs);
+        console.log(`\n`);
 
-        l2DeployerNonce += 1;
-        const l2AspidaERC20Gateway = ethers.utils.getContractAddress({
-            from: deployData.layer2.deployer,
-            nonce: l2DeployerNonce,
-        });
-        console.log(`\nlayer 2 deploy ${tokenName}L2AspidaERC20Gateway nonce: ${l2DeployerNonce}`);
-        console.log(`${tokenName}L2AspidaERC20Gateway: ${l2AspidaERC20Gateway}\n`);
+        let l2name = `${tokenName}L2AspidaERC20Gateway`;
+        let l2AspidaERC20Gateway;
+        if (l2DeploymentsAll.hasOwnProperty(l2name)) {
+            l2AspidaERC20Gateway = l2DeploymentsAll[l2name].address;
+        } else {
+            // l2DeployerNonce += 1;
+            console.log(`layer 2 deploy ${l2name} nonce: ${l2DeployerNonce}`);
+
+            l2AspidaERC20Gateway = ethers.utils.getContractAddress({
+                from: deployData.layer2.deployer,
+                nonce: l2DeployerNonce,
+            });
+        }
+        console.log(`${l2name}: ${l2AspidaERC20Gateway}\n`);
         const args = [
             l2AspidaERC20Gateway,
             deployData.l1Router,
