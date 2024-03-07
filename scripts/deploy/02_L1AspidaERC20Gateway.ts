@@ -18,19 +18,18 @@ module.exports = async ({ deployments, getChainId }) => {
     const l2deployData = deployInfo[deployData.layer2.network];
 
     let l2DeployerNonce = await l2provider.getTransactionCount(deployData.layer2.deployer);
-    console.log(l2DeployerNonce);
     // let l2DeployerNonce = 3;
 
     let l2AspidaERC20GatewayImpl;
     if (l2DeploymentsAll.hasOwnProperty("L2AspidaERC20GatewayImpl")) {
         l2AspidaERC20GatewayImpl = l2DeploymentsAll.L2AspidaERC20GatewayImpl.address;
     } else {
-        l2DeployerNonce += 1;
         console.log(`\nlayer 2 deploy L2AspidaERC20GatewayImpl nonce: ${l2DeployerNonce}`);
         l2AspidaERC20GatewayImpl = ethers.utils.getContractAddress({
             from: deployData.layer2.deployer,
             nonce: l2DeployerNonce,
         });
+        l2DeployerNonce += 1;
     }
     console.log(`L2AspidaERC20GatewayImpl: ${l2AspidaERC20GatewayImpl}\n`);
 
@@ -56,13 +55,13 @@ module.exports = async ({ deployments, getChainId }) => {
         if (l2DeploymentsAll.hasOwnProperty(l2name)) {
             l2AspidaERC20Gateway = l2DeploymentsAll[l2name].address;
         } else {
-            // l2DeployerNonce += 1;
             console.log(`layer 2 deploy ${l2name} nonce: ${l2DeployerNonce}`);
 
             l2AspidaERC20Gateway = ethers.utils.getContractAddress({
                 from: deployData.layer2.deployer,
                 nonce: l2DeployerNonce,
             });
+            l2DeployerNonce += 1;
         }
         console.log(`${l2name}: ${l2AspidaERC20Gateway}\n`);
         const args = [

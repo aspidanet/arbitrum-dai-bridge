@@ -5,6 +5,8 @@ export const network = {
     421614: "arbitrumSepolia",
 };
 
+export const stakingNetwork = [1, 5, 11155111];
+
 export const deployInfo = {
     ethereum: {
         owner: "",
@@ -28,8 +30,8 @@ export const deployInfo = {
         },
         l2Router: "0x5288c571Fd7aD117beA99bF60FE0846C4E84F933",
         tokens: {
-            // aETH: "",
-            saETH: "",
+            // aETH: "0xFC87753Df5Ef5C368b5FBA8D4C5043b77e8C5b39",
+            saETH: "0xF1617882A71467534D14EEe865922de1395c9E89",
         },
     },
     sepolia: {
@@ -42,7 +44,7 @@ export const deployInfo = {
         l1Router: "0xcE18836b233C83325Cc8848CA4487e94C6288264",
         tokens: {
             aETH: "",
-            // saETH: "",
+            saETH: "",
         },
     },
     arbitrumSepolia: {
@@ -51,10 +53,10 @@ export const deployInfo = {
             network: "sepolia",
             rpc: "",
         },
-        l2Router: "",
+        l2Router: "0x9fDD1C4E4AA24EEc1d913FABea925594a20d43C7",
         tokens: {
             aETH: "",
-            // saETH: "",
+            saETH: "",
         },
     },
 };
