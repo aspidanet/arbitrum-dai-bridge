@@ -15,15 +15,23 @@ const config: HardhatUserConfig = {
     networks: {
         ethereum: {
             url: "http://localhost:24012/rpc", // truffle-dashboard
+            // url: "",
             timeout: 200000,
+            companionNetworks: {
+                l2: "arbitrum",
+            },
         },
         arbitrum: {
             url: "http://localhost:24012/rpc", // truffle-dashboard
+            // url: "",
             timeout: 200000,
+            companionNetworks: {
+                l1: "ethereum",
+            },
         },
         sepolia: {
             url: "http://localhost:24012/rpc", // truffle-dashboard
-            // url: "https://eth-sepolia.g.alchemy.com/v2/mIp-juUsuqr9fAraZ2QHVBTp-xaYBbvM",
+            // url: "",
             timeout: 2000000,
             companionNetworks: {
                 l2: "arbitrumSepolia",
@@ -31,7 +39,7 @@ const config: HardhatUserConfig = {
         },
         arbitrumSepolia: {
             url: "http://localhost:24012/rpc", // truffle-dashboard
-            // url: "https://arbitrum-sepolia.blockpi.network/v1/rpc/public",
+            // url: "",
             timeout: 2000000,
             companionNetworks: {
                 l1: "sepolia",
