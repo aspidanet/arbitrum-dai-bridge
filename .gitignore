@@ -16,4 +16,8 @@ corpus/
 coverage.json
 coverage
 
+#Hardhat files
+cache
+artifacts
+
 local
