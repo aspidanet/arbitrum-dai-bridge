@@ -32,6 +32,12 @@ interface IAspidaERC20 {
   function minterMint(address usr, uint256 wad) external;
 
   function minterBurn(uint256 wad) external;
+
+  function mint(address _receiver, uint256 _amount) external;
+
+  function burnFrom(address _account, uint256 _amount) external;
+
+  function totalSupply() external view returns (uint256);
 }
 
 interface IOperator {
@@ -115,7 +121,7 @@ contract L2AspidaERC20Gateway is Initializable, L2CrossDomainEnabled, L2ITokenGa
     uint256, // maxGas
     uint256, // gasPriceBid
     bytes calldata data
-  ) public override returns (bytes memory res) {
+  ) public virtual override returns (bytes memory res) {
     require(isOpen == 1, "L2AspidaERC20Gateway/closed");
     require(l1Token == l1AspidaERC20, "L2AspidaERC20Gateway/token-not-AspidaERC20");
 
@@ -162,7 +168,7 @@ contract L2AspidaERC20Gateway is Initializable, L2CrossDomainEnabled, L2ITokenGa
     address to,
     uint256 amount,
     bytes calldata data
-  ) external override onlyL1Counterpart(l1Counterpart) {
+  ) external virtual override onlyL1Counterpart(l1Counterpart) {
     require(l1Token == l1AspidaERC20, "L2AspidaERC20Gateway/token-not-AspidaERC20");
 
     IAspidaERC20(l2AspidaERC20).minterMint(to, amount);
